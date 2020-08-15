@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, Label, Input, Button, } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Button, Col } from 'reactstrap'
 
 export default class TriviaPage extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class TriviaPage extends Component {
   }
 
   //if not true or false. randomize answers.
-  prepare_answers_for_display() {
+  arrange_answers_for_display() {
     if (this.state.multiple === false) {
       return ['True', 'False']
     } else {
@@ -62,6 +62,7 @@ export default class TriviaPage extends Component {
     }
   }
 
+
   //display the question
   //onsubmit verify the answer
   //update user currency 
@@ -71,10 +72,12 @@ export default class TriviaPage extends Component {
   render() {
     if (this.state.Trivia) {
       return (
-        <Form tag="fieldset">
-          <legend>{this.state.Trivia.category}</legend>
-          <p>{this.state.Trivia.difficulty}</p>
+        <div style={{display: 'block'}}>
+        <Form tag="fieldset" style={{display: 'inline-block', margin:"auto"}}>
+          <legend>Category: {this.state.Trivia.category}</legend>
+          <p>Difficulty: {this.state.Trivia.difficulty}</p>
           <p>{this.state.Trivia.question}</p>
+          <Col sm={10} style={{textAlign:"left"}}>
           <FormGroup check>
             <Label check>
               <Input type="radio" name="answer1" />{' '}
@@ -105,12 +108,13 @@ export default class TriviaPage extends Component {
               </Label>
             </FormGroup>
           }
-
+          </Col>
           <Button>Submit</Button>
         </Form>
+        </div>
       )
     } else {
-      return <di></di>
+      return <div></div>
     }
   }
 }
