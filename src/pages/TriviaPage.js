@@ -42,6 +42,25 @@ export default class TriviaPage extends Component {
     this.prepareQuestion()
   }
 
+  //if not true or false. randomize answers.
+  prepare_answers_for_display() {
+    if (this.state.multiple === false) {
+      return ['True', 'False']
+    } else {
+      let answer_list = [...this.state.incorrect_answers]
+      answer_list.push(this.state.correct_answer)
+      let currentIndex, temp, randomIndex
+      currentIndex = answer_list.length
+      while (currentIndex !== 0){
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex -= 1
+        temp = answer_list[currentIndex]
+        answer_list[currentIndex] = answer_list[randomIndex]
+        answer_list[randomIndex] = temp
+      }
+      return answer_list
+    }
+  }
 
   //display the question
   //onsubmit verify the answer
