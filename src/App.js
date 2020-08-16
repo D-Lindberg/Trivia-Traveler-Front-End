@@ -10,8 +10,7 @@ import StatusPage from './pages/StatusPage'
 import Navbar from './Components/Navbar';
 import LogoutPage from './pages/LogoutPage'
 import TriviaPage from './pages/TriviaPage'
-
-
+import TriviaContextProvider from './Context/TriviaContext'
 
 
 
@@ -59,7 +58,9 @@ class App extends Component {
                       <TravelPage username={localStorage.getItem('username')} />
                     </Route>
                     <Route exact path={"/trivia"}>
+                      <TriviaContextProvider>
                       <TriviaPage username={localStorage.getItem('username')} />
+                      </TriviaContextProvider>
                     </Route>
                     <Route exact path={"/status"}>
                       <StatusPage username={localStorage.getItem('username')} />
